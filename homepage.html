@@ -11,7 +11,7 @@
 
 <body>
     <nav id="nav">
-        <div id="logo" style="width:40%">
+        <div id="logo" style="width:50%">
             <img src="assets/logo.png" alt="Logo" width="120px">
         </div>
         <div>Home</div>
@@ -22,15 +22,73 @@
     <section id="section1">
         <div id="section1-left">
             <h1 class="h1-light">Personal Finance Management</h1>
-            <p class="p-light">Manage your personal finances, income, expenditure all in one place without any hassle. Pick your
+            <p class="p-light">Manage your personal finances, income, expenditure all in one place without any hassle.
+                Pick your
                 categories of expenses and income and just enter the values. We’ll take care of the rest.</h6>
-            <br><br>
-            <button class="btn-light">Get Started</button>
+                <br><br>
+                <button class="btn-light">Get Started</button>
         </div>
         <div id="section1-right">
             <img src="assets/undraw_Pie_chart_re_bgs8.svg" alt="Pie-Chart" style="width: 40vw">
         </div>
     </section>
+    <section id="section2">
+        <h1 class="h1-light" style="text-align: center;">Features</h1>
+        <div class="card-container">
+            <div class="card">
+                <div><img src="assets/undraw_Investment_data_re_sh9x.svg" alt="Investment" width="180px"></div>
+                <div>Visualize your income and expenses</div>
+            </div>
+            <div class="card">
+                <div><img src="assets/undraw_Investment_data_re_sh9x.svg" alt="Investment" width="180px"></div>
+                <div>Visualize your income and expenses</div>
+            </div>
+            <div class="card">
+                <div><img src="assets/undraw_Investment_data_re_sh9x.svg" alt="Investment" width="180px"></div>
+                <div>Visualize your income and expenses</div>
+            </div>
+            <div class="card">
+                <div><img src="assets/undraw_Investment_data_re_sh9x.svg" alt="Investment" width="180px"></div>
+                <div>Visualize your income and expenses</div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div><button class="btn-light">Get Started</button></div>
+    </section>
+    <br><br><br><br>
+    <footer>
+        <div>
+            <h4>SITEMAP</h4>
+            <p>Home</p>
+            <p>About us</p>
+            <p>Features</p>
+        </div>
+        <div>
+            <img src="assets/logo-bw.png" alt="Logo in Black & White" width="120px" style="margin-left: 48px;">
+            <p>All rights reserved.<br>Designed & Developed by <br> <i>Nusry, Akeel, & Zaroath</i></p>
+        </div>
+    </footer>
 </body>
+<script>
+    let nav = document.querySelector("#nav");
+    let section1 = document.querySelector("#section1");
+    let section2 = document.querySelector("#section2");
+    let body = document.querySelector("body");
+    // let newHeight = window.innerHeight - nav.offsetHeight - 45;
+
+
+    window.addEventListener('resize', setSize);
+    window.addEventListener('load', setSize);
+
+    function setSize() {
+        let newHeight = window.innerHeight - nav.offsetHeight - 45;
+        section1.style.height = `${newHeight}px`;
+        // section2.style.height = `${newHeight}px`;
+        nav.style.width = `${body.offsetWidth}px`;
+        console.log('test')
+    }
+
+</script>
 
 </html>
