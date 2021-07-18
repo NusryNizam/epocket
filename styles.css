@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
     /* outline: 1px solid red; */
-
+    scroll-behavior: smooth;
 }
 
 html {
@@ -42,6 +42,16 @@ body {
     /* filter: blur(3px) */
 }
 
+#nav a {
+    text-decoration: none;
+    color: black;
+}
+
+#nav a:hover {
+    text-decoration: none;
+    color: rgb(26, 26, 26);
+}
+
 #nav:hover {
     background-color: #efffdaff;
     transition-duration: 200ms;
@@ -55,6 +65,7 @@ body {
     left: -150px;
     position: absolute;
     z-index: -1;
+    /* box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.075); */
 }
 
 #nav::after:hover {
@@ -96,6 +107,7 @@ section {
     font-family: Inter;
     font-weight: 900;
     font-size: 64px;
+    margin-bottom: 12px;
 }
 
 .p-light {
@@ -131,6 +143,10 @@ section {
 }
 
 .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     margin: 30px 10px;
     background-color: white;
     /* max-width: 250px; */
@@ -173,7 +189,7 @@ footer {
     font-size: 14px;
 }
 
-footer:nth-child(8) > div:nth-child(2) > p:nth-child(2) {
+body > footer:nth-child(9) > div:nth-child(2) > p:nth-child(2) {
     color: #767676;
     font-size: 14px;
     text-align: right;
@@ -189,33 +205,153 @@ footer::after {
     z-index: -1;
 }
 
-@media (max-width:1000px) {
-    #section1-right {
-        position: absolute;
-        right: 0;
-        top: 200px;
-        z-index: -1;
-        opacity: 0.2;
-    }
-
+footer a {
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
 }
 
-@media (max-width:780px) {
-    .card-container {
-        align-items: center;
-    }
-
-    .card {
-        margin-bottom: 0px;
-    }
-
-    html {
-        margin: 10px;
-    }
-
-    footer {
-        padding: 10px 30px;
-        font-size: 13px;
-    }
-
+footer a:hover {
+    color: rgb(224, 224, 224);
 }
+
+#close, #menu {
+    display:none;
+}
+
+#smallScreenNav {
+    display: none;
+}
+
+
+
+    @media (max-width:1000px) {
+        .toggle {
+            display: none !important;
+            transition-duration: 200ms;
+        }
+
+        #smallScreenNav {
+            display: block;
+        }
+
+        #smallScreenNav::before {
+            content: " ";
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            height: 80px;
+            width: 100%;
+            background-color:#efffda;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.212);
+            /* z-index: -1; */
+        }
+
+        #close, #menu {
+            position: fixed;
+            right: 20px;
+            top: 30px;
+            display: block;
+            border: none !important;
+        }
+
+        #close:hover, #menu:hover {
+            cursor: pointer;
+        }
+
+        #menu {
+            z-index: 0;
+        }
+
+        #section1-right {
+            position: absolute;
+            right: 0;
+            top: 200px;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        #nav {
+            margin-top: 80px;
+            flex-direction: column;
+            background-color: white;;
+        }
+
+        #nav:hover {
+            background-color: white;
+        }
+
+        #nav div {
+            /* outline: 1px solid green; */
+            padding: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        #logo {
+            position: fixed;
+            max-width: 140px;
+            left: 15px;
+            top: 20px;
+            border: none !important;
+        }
+
+        #nav a {
+            width: 110%;
+            background-color: white;
+            text-align: center;
+        }
+
+        #nav a:hover {
+            background-color: rgb(241, 241, 241);
+            transition-duration: 200ms;
+        }
+
+        #nav::before {
+            content: " ";
+            width: 120%;
+            height: 100vh;
+            background-color: white;
+            /* left: -150px; */
+            position: absolute;
+            top: -90px;
+            z-index: -1;
+        }
+
+
+        /* #nav::after {
+            background-color: white;
+        } */
+
+    }
+
+    @media (max-width:780px) {
+        .card-container {
+            align-items: center;
+        }
+
+        .card {
+            margin-bottom: 0px;
+        }
+
+        html {
+            margin: 10px;
+        }
+
+        footer {
+            padding: 10px 30px;
+            font-size: 13px;
+        }
+
+        body {
+            font-size: 14px;
+        }
+
+        .h1-light {
+            font-size: 54px;
+            width: auto;
+            margin-bottom: 8px;
+        }
+
+        
+
+    }

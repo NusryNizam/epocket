@@ -10,14 +10,31 @@
 </head>
 
 <body>
-    <nav id="nav">
+    <div id="smallScreenNav">
         <div id="logo" style="width:50%">
             <img src="assets/logo.png" alt="Logo" width="120px">
         </div>
-        <div>Home</div>
-        <div>Features</div>
-        <div>Create an account</div>
-        <div>Login</div>
+        <div id="menu"><img src="assets/menu.png" alt="open-menu"></div>
+    </div>
+
+    <nav id="nav" class="toggle">
+        <div id="logo" style="width:50%">
+            <img src="assets/logo.png" alt="Logo" width="120px">
+        </div>
+        <div id="close"><img src="assets/close.png" alt="close-menu"></div>
+        <!-- <div id="menu"><img src="assets/menu.png" alt="open-menu"></div> -->
+        <a href="#section1">
+            <div>Home</div>
+        </a>
+        <a href="#section2">
+            <div>Features</div>
+        </a>
+        <a href="#">
+            <div>Create an account</div>
+        </a>
+        <a href="#">
+            <div>Login</div>
+        </a>
     </nav>
     <section id="section1">
         <div id="section1-left">
@@ -36,20 +53,20 @@
         <h1 class="h1-light" style="text-align: center;">Features</h1>
         <div class="card-container">
             <div class="card">
-                <div><img src="assets/undraw_Investment_data_re_sh9x.svg" alt="Investment" width="180px"></div>
+                <div><img src="assets/1.svg" alt="Investment" ></div>
                 <div>Visualize your income and expenses</div>
             </div>
             <div class="card">
-                <div><img src="assets/undraw_Investment_data_re_sh9x.svg" alt="Investment" width="180px"></div>
-                <div>Visualize your income and expenses</div>
+                <div><img src="assets/2.svg" alt="Investment" ></div>
+                <div>Categorization of income and expenses</div>
             </div>
             <div class="card">
-                <div><img src="assets/undraw_Investment_data_re_sh9x.svg" alt="Investment" width="180px"></div>
-                <div>Visualize your income and expenses</div>
+                <div><img src="assets/3.svg" alt="Investment" ></div>
+                <div>Conveniently access your data with ePocket</div>
             </div>
             <div class="card">
-                <div><img src="assets/undraw_Investment_data_re_sh9x.svg" alt="Investment" width="180px"></div>
-                <div>Visualize your income and expenses</div>
+                <div><img src="assets/4.svg" alt="Investment" ></div>
+                <div>Securely store your data with ePocket</div>
             </div>
         </div>
         <br>
@@ -60,9 +77,9 @@
     <footer>
         <div>
             <h4>SITEMAP</h4>
-            <p>Home</p>
-            <p>About us</p>
-            <p>Features</p>
+            <p><a href="#section1">Home</a></p>
+            <p><a href="#">About us</a></p>
+            <p><a href="#section2">Features</a></p>
         </div>
         <div>
             <img src="assets/logo-bw.png" alt="Logo in Black & White" width="120px" style="margin-left: 48px;">
@@ -75,8 +92,9 @@
     let section1 = document.querySelector("#section1");
     let section2 = document.querySelector("#section2");
     let body = document.querySelector("body");
+    let close = document.querySelector("#close");
+    let menu = document.querySelector("#menu");
     // let newHeight = window.innerHeight - nav.offsetHeight - 45;
-
 
     window.addEventListener('resize', setSize);
     window.addEventListener('load', setSize);
@@ -88,6 +106,14 @@
         nav.style.width = `${body.offsetWidth}px`;
         console.log('test')
     }
+
+    menu.addEventListener('click', () => {
+        nav.classList.toggle("toggle");
+    })
+
+    close.addEventListener('click', () => {
+        nav.classList.toggle("toggle");
+    })
 
 </script>
 
