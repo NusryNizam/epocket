@@ -79,6 +79,7 @@ body {
 
 #section1 {
     display: flex;
+    padding-top: 50px;
 }
 
 #section1-left, #section1-right {
@@ -95,7 +96,7 @@ body {
 }
 
 #section1-right img {
-    margin-top: 10px;
+    margin-top: 100px;
 }
 
 #section2 {
@@ -184,7 +185,7 @@ footer {
     padding: 20px 55px;
     color: white;
     /* position: absolute; */
-    margin-top: 100px;
+    margin-top: 200px;
     font-family: 'Open Sans';
     background-color: #132215;
     font-size: 14px;
@@ -273,7 +274,7 @@ footer a:hover {
             right: 0;
             top: 200px;
             z-index: -1;
-            opacity: 0.2;
+            opacity: 0;
         }
 
         #nav {
