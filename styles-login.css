@@ -1,6 +1,5 @@
 #section1-right img {
     max-width: 450px !important;
-    /* z-index: -99; */
 }
 
 #section1 {
@@ -12,17 +11,13 @@
     top: 120px;
     left: 10px;
     display: inline;
-    /* background-color:darkcyan; */
-    /* width: ; */
     min-width: 360px;
-    /* height: 100vh; */
     font-family: 'Open Sans';
 }
 
 #login-form {
     /* margin: 10px 10px 50px 10px; */
     background-color: white;
-    /* max-width: 350px; */
     min-height: 400px;
     border-radius: 3px;
     box-shadow: 5px 5px 0px black;
@@ -32,7 +27,6 @@
     justify-content: center;
     font-family: 'Open Sans';
     align-items: center;
-    /* display: none; */
 }
 
 #login h2 {
@@ -77,7 +71,6 @@ label {
     @media (max-width:1000px) {
         #section1 {
             position: relative;
-            /* z-index: -2; */
         }
 
         #section1-right {
