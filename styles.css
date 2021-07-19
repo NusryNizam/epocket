@@ -39,6 +39,7 @@ body {
     padding: 10px;
     position: fixed;
     background-color: #efffdaa4;
+    z-index: 99;
     /* filter: blur(3px) */
 }
 
@@ -70,6 +71,10 @@ body {
 
 #nav::after:hover {
     background-color: #efffdaff;
+}
+
+#logo:hover {
+    cursor:pointer;
 }
 
 #section1 {

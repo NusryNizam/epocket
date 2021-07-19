@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <!-- <link rel="stylesheet" href="styles-login.css"> -->
+    <link rel="stylesheet" href="styles-login.css">
     <title>ePocket</title>
 </head>
 
@@ -38,44 +38,35 @@
         </a>
     </nav>
     <section id="section1">
-        <div id="section1-left">
-            <h1 class="h1-light">Personal Finance Management</h1>
-            <p class="p-light">Manage your personal finances, income, expenditure all in one place without any hassle.
-                Pick your
-                categories of expenses and income and just enter the values. We’ll take care of the rest.</h6>
-                <br><br>
-                <button class="btn-light get-started">Get Started</button>
-        </div>
+        <section id="login">
+            <form id="login-form">
+                <h2>Signup</h2>
+                <label for="username">Username<br>
+                    <input type="text" name="username" required>
+                </label>
+                <br>
+                <label for="email">Email<br>
+                    <input type="email" name="email" required>
+                </label>
+                <br>
+                <label for="password">New Password<br>
+                    <input type="password" required>
+                </label>
+                <br>
+                <label for="confirmPassword">Confirm Password<br>
+                    <input type="password" name="confirmPassword" required>
+                </label>
+                <br>
+                
+                <input type="submit" class="btn-light" name="signup" value="Signup">
+                <p class="small-text">Already have an account? <a href="login.html">Login here</a></p>
+            </form>
+        </section>
         <div id="section1-right">
             <img src="assets/undraw_Pie_chart_re_bgs8.svg" alt="Pie-Chart" style="width: 40vw">
         </div>
     </section>
-    <section id="section2">
-        <h1 class="h1-light" style="text-align: center;">Features</h1>
-        <div class="card-container">
-            <div class="card">
-                <div><img src="assets/1.svg" alt="Investment" ></div>
-                <div>Visualize your income and expenses</div>
-            </div>
-            <div class="card">
-                <div><img src="assets/2.svg" alt="Investment" ></div>
-                <div>Categorization of income and expenses</div>
-            </div>
-            <div class="card">
-                <div><img src="assets/3.svg" alt="Investment" ></div>
-                <div>Conveniently access all your data</div>
-            </div>
-            <div class="card">
-                <div><img src="assets/4.svg" alt="Investment" ></div>
-                <div>Securely store your data with ePocket</div>
-            </div>
-        </div>
-        <br>
-        <br>
-        <div><button class="btn-light get-started">Get Started</button></div>
-    </section>
-    <br><br><br><br>
-    <footer>
+    <footer style="margin-top: 100px;">
         <div>
             <h4>SITEMAP</h4>
             <p><a href="homepage.html">Home</a></p>
@@ -89,5 +80,4 @@
     </footer>
 </body>
 <script src="script.js"></script>
-
 </html>
