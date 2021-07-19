@@ -15,12 +15,12 @@
     /* background-color:darkcyan; */
     /* width: ; */
     min-width: 360px;
-    height: 100vh;
+    /* height: 100vh; */
     font-family: 'Open Sans';
 }
 
 #login-form {
-    margin: 10px;
+    /* margin: 10px 10px 50px 10px; */
     background-color: white;
     /* max-width: 350px; */
     min-height: 400px;

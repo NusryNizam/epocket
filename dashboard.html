@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <!-- <link rel="stylesheet" href="styles-login.css"> -->
+    <title>ePocket</title>
+    <style>
+        body {
+            background-image: none;
+            background-color: #efffda;
+        }
+        #section1 {
+            height: 80px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="smallScreenNav">
+        <div id="logo" style="width:50%">
+            <a href="dashboard.html"><img src="assets/logo.png" alt="Logo" width="120px"></a>
+        </div>
+        <div id="menu"><img src="assets/menu.png" alt="open-menu"></div>
+    </div>
+
+    <nav id="nav" class="toggle">
+        <div id="logo" style="width:50%">
+            <a href="dashboard.html"><img src="assets/logo.png" alt="Logo" width="120px"></a>
+        </div>
+        <div id="close"><img src="assets/close.png" alt="close-menu"></div>
+        <a href="dashboard.html">
+            <div>Dashboard</div>
+        </a>
+        <a href="settings.html">
+            <div>Settings</div>
+        </a>
+        <a href="homepage.html">
+            <div>Logout</div>
+        </a>
+    </nav>
+    <section id="section1">
+    </section>
+        
+    <section>
+        <div class="tabs">
+            <!-- Tab 1 -->
+            <div class="tab">
+                <input type="radio" id="tab1" name="tabs" value="Dashboard" checked>
+                <label for="tab1">
+                    Dashboard
+                </label>
+            </div>
+
+            <!-- Tab 2 -->
+            <div class="tab">
+                <input type="radio"  id="tab2" name="tabs" value="Dashboard">
+                <label for="tab2">
+                    Income
+                </label>
+            </div>
+
+            <!-- Tab 3 -->
+            <div class="tab">
+                <input type="radio" id="tab3" name="tabs" value="Dashboard">
+                <label for="tab3">
+                    Expenses
+                </label>
+            </div>
+        </div>
+    </section>
+
+    
+</body>
+<script src="script.js"></script>
+
+</html>
