@@ -9,7 +9,7 @@
 #login {
     position:relative;
     top: 120px;
-    left: 10px;
+    /* left: 10px; */
     display: inline;
     min-width: 360px;
     font-family: 'Open Sans';
@@ -85,5 +85,13 @@ label {
     @media (max-width:400px) {
         #login {
             min-width: 300px;
+        }
+
+        #section1 {
+            display: block;
+        }
+
+        #login {
+            left: 0px
         }
     }
