@@ -191,7 +191,7 @@ footer {
     font-size: 14px;
 }
 
-body > footer:nth-child(9) > div:nth-child(2) > p:nth-child(2) {
+.copyrights {
     color: #767676;
     font-size: 14px;
     text-align: right;
