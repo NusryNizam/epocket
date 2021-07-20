@@ -1,33 +1,127 @@
-.tabs {
+/* .tabs {
     position: relative;
-    min-height: 200px; /* This part sucks */
+    min-height: 200px; 
     clear: both;
     margin: 25px 0;
-  }
+    font-family: 'Open Sans';
+    font-weight: 600;
+  } */
 
-  .tab {
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  /* min-height: 200px;  */
+  margin-top: 25px;
+  font-family: 'Open Sans';
+  font-weight: 600;
+  min-height: 200px;
+  position: absolute;
+  z-index: -1;
+}
+
+/* .tab {
     float: left;
-  }
-  .tab label {
-    background: #eee;
-    padding: 10px;
+  } */
+
+.tab label {
+  background: #f3f3f3;
+  padding: 10px;
+  border: 2px solid #ccc;
+  margin-left: -27px;
+  position: relative;
+  border-radius: 4px 4px 0px 0px;
+  left: 1px;
+}
+
+.tab [type="radio"] {
+  opacity: 0;
+}
+
+[type="radio"]:focus~label {
+  /* outline: 2px solid blue; */
+}
+
+.tab label:hover {
+  background-color: rgb(235, 235, 235);
+  cursor: pointer;
+}
+
+[type="radio"]:checked~label {
+  background: white;
+  border-bottom: 1px solid white;
+  z-index: 2;
+  font-weight: bold;
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.11);
+}
+
+[type="radio"]:checked~label~.content {
+  z-index: 1;
+}
+
+/* .content {
+    position: absolute;
+    top: 68px;
+    left: 0;
+    background: white;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
     border: 1px solid #ccc;
-    margin-left: -1px;
-    position: relative;
-    left: 1px;
+    overflow: hidden;
+  } */
+
+.content {
+  position: absolute;
+  width: 90vw;
+  padding: 20px;
+  background-color: white;
+  margin-top: 10px;
+}
+
+.content2 {
+  margin-left: -117px;
+  background-color:red;
+}
+
+.content3 {
+  margin-left: -206px;
+  background-color:greenyellow;
+
+}
+
+.warning {
+  display: none;
+  font-family: 'Open Sans';
+}
+
+@media (min-width:1400px) {
+  /* .content>p:nth-child(2) {
+    background-color: crimson;
+  } */
+  .content {
+    width: 80vw;
   }
-  .tab [type="radio"] {
-    opacity: 0;
+}
+
+@media (max-width:780px) {
+  .content2 {
+    margin-left: -96px;
+    background-color:red;
+  }
+  
+  .content3 {
+    margin-left: -168px;
+    background-color:greenyellow;
+  
+  }
+}
+
+@media (max-width:280px) {
+  .tabs {
+    display: none;
   }
 
-  [type="radio"]:focus ~ label {
-    /* outline: 2px solid blue; */
+  .warning {
+    display: block;
   }
-  [type="radio"]:checked ~ label {
-    background: white;
-    border-bottom: 1px solid white;
-    z-index: 2;
-  }
-  [type="radio"]:checked ~ label ~ .content {
-    z-index: 1;
-  }
+}
