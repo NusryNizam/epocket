@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="dashboard-grid.css">
     <!-- <link rel="stylesheet" href="styles-login.css"> -->
     <title>ePocket</title>
     <style>
@@ -14,6 +15,7 @@
             background-image: none;
             background-color: #efffda;
         }
+        
         #section1 {
             height: 80px !important;
         }
@@ -45,7 +47,7 @@
     </nav>
     <section id="section1">
     </section>
-        
+
     <section>
         <p class="warning">Your device resolution is not supported. <br><b>Please try from another device instead or use landscape mode</b>.
             <br><br>Your device should be atleast 300px wide to view this content.
@@ -58,20 +60,75 @@
                     Dashboard
                 </label>
                 <div class="content content1">
-                    <h1>This is something</h1>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto voluptatibus eos quas tempore animi beatae? Tempore placeat cum, recusandae iure minima a asperiores. Assumenda nemo omnis atque fugiat perferendis corrupti at iste, nam obcaecati eius ea harum quis repudiandae et esse officia sint deserunt praesentium non numquam voluptatibus itaque architecto velit. Facilis doloribus mollitia eum quasi dicta corrupti nostrum culpa dolores inventore quod? Aliquam itaque quod autem quidem cumque? Suscipit, incidunt, exercitationem adipisci, quasi soluta eveniet obcaecati nostrum fugit voluptates consequuntur facilis inventore quas quidem autem amet! Deleniti, pariatur modi architecto quo saepe magni deserunt! Maxime officiis veritatis cupiditate vel.</p>
+                    <!-- <div class="chart">Chart here</div>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto voluptatibus eos quas tempore animi beatae? Tempore placeat cum, recusandae iure minima a asperiores. Assumenda nemo omnis atque fugiat perferendis corrupti at iste,
+                        nam obcaecati eius ea harum quis repudiandae et esse officia sint deserunt praesentium non numquam voluptatibus itaque architecto velit. Facilis doloribus mollitia eum quasi dicta corrupti nostrum culpa dolores inventore quod?
+                        Aliquam itaque quod autem quidem cumque? Suscipit, incidunt, exercitationem adipisci, quasi soluta eveniet obcaecati nostrum fugit voluptates consequuntur facilis inventore quas quidem autem amet! Deleniti, pariatur modi architecto
+                        quo saepe magni deserunt! Maxime officiis veritatis cupiditate vel.</p> -->
+                    <div class="grid-container">
+                        <div class="income-chart">
+                            Chart
+                        </div>
+                        <div class="total-view">
+                            <div class="total-view-card">
+                                <p class="total-income">Total Income</p>
+                                <div class="total-income-amount">Rs. 47000</div>
+                                <p class="current-month">June 2021</p>
+                            </div>
+                            <div class="total-view-card">
+                                <p class="total-income">Total Expense</p>
+                                <div class="total-income-amount">Rs. 36280</div>
+                                <p class="current-month">June 2021</p>
+                            </div>
+                        </div>
+                        <div class="recent-entries">Recent Entries
+                            <table>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Category</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                </tr>
+                                <tr>
+                                    <td>22.06.2021</td>
+                                    <td>Food</td>
+                                    <td>Pizza</td>
+                                    <td>Expense</td>
+                                    <td>990.00</td>
+                                </tr>
+                                <tr>
+                                    <td>22.06.2021</td>
+                                    <td>Food</td>
+                                    <td>Pizza</td>
+                                    <td>Expense</td>
+                                    <td>990.00</td>
+                                </tr>
+                                <tr>
+                                    <td>22.06.2021</td>
+                                    <td>Food</td>
+                                    <td>Pizza</td>
+                                    <td>Expense</td>
+                                    <td>990.00</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Tab 2 -->
             <div class="tab">
-                <input type="radio"  id="tab2" name="tabs" value="Dashboard">
+                <input type="radio" id="tab2" name="tabs" value="Dashboard">
                 <label for="tab2">
                     Income
                 </label>
                 <div class="content content2">
                     <h1>This is 2nd content</h1>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto voluptatibus eos quas tempore animi beatae? Tempore placeat cum, recusandae iure minima a asperiores. Assumenda nemo omnis atque fugiat perferendis corrupti at iste, nam obcaecati eius ea harum quis repudiandae et esse officia sint deserunt praesentium non numquam voluptatibus itaque architecto velit. Facilis doloribus mollitia eum quasi dicta corrupti nostrum culpa dolores inventore quod? Aliquam itaque quod autem quidem cumque? Suscipit, incidunt, exercitationem adipisci, quasi soluta eveniet obcaecati nostrum fugit voluptates consequuntur facilis inventore quas quidem autem amet! Deleniti, pariatur modi architecto quo saepe magni deserunt! Maxime officiis veritatis cupiditate vel.</p>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto voluptatibus eos quas tempore animi beatae? Tempore placeat cum, recusandae iure minima a asperiores. Assumenda nemo omnis atque fugiat perferendis corrupti at iste,
+                        nam obcaecati eius ea harum quis repudiandae et esse officia sint deserunt praesentium non numquam voluptatibus itaque architecto velit. Facilis doloribus mollitia eum quasi dicta corrupti nostrum culpa dolores inventore quod?
+                        Aliquam itaque quod autem quidem cumque? Suscipit, incidunt, exercitationem adipisci, quasi soluta eveniet obcaecati nostrum fugit voluptates consequuntur facilis inventore quas quidem autem amet! Deleniti, pariatur modi architecto
+                        quo saepe magni deserunt! Maxime officiis veritatis cupiditate vel.</p>
                 </div>
             </div>
 
@@ -83,13 +140,16 @@
                 </label>
                 <div class="content content3">
                     <h1>This is 3rd content</h1>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto voluptatibus eos quas tempore animi beatae? Tempore placeat cum, recusandae iure minima a asperiores. Assumenda nemo omnis atque fugiat perferendis corrupti at iste, nam obcaecati eius ea harum quis repudiandae et esse officia sint deserunt praesentium non numquam voluptatibus itaque architecto velit. Facilis doloribus mollitia eum quasi dicta corrupti nostrum culpa dolores inventore quod? Aliquam itaque quod autem quidem cumque? Suscipit, incidunt, exercitationem adipisci, quasi soluta eveniet obcaecati nostrum fugit voluptates consequuntur facilis inventore quas quidem autem amet! Deleniti, pariatur modi architecto quo saepe magni deserunt! Maxime officiis veritatis cupiditate vel.</p>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto voluptatibus eos quas tempore animi beatae? Tempore placeat cum, recusandae iure minima a asperiores. Assumenda nemo omnis atque fugiat perferendis corrupti at iste,
+                        nam obcaecati eius ea harum quis repudiandae et esse officia sint deserunt praesentium non numquam voluptatibus itaque architecto velit. Facilis doloribus mollitia eum quasi dicta corrupti nostrum culpa dolores inventore quod?
+                        Aliquam itaque quod autem quidem cumque? Suscipit, incidunt, exercitationem adipisci, quasi soluta eveniet obcaecati nostrum fugit voluptates consequuntur facilis inventore quas quidem autem amet! Deleniti, pariatur modi architecto
+                        quo saepe magni deserunt! Maxime officiis veritatis cupiditate vel.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    
+
 </body>
 <script src="script.js"></script>
 
