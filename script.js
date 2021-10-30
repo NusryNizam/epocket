@@ -28,6 +28,6 @@ close.addEventListener('click', () => {
 
 getStartedButton.forEach(button => {
     button.addEventListener('click', () => {
-        window.location.href = "signup.html";
+        window.location.href = "signup.php";
     })
 })

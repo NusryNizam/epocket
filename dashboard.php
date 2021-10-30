@@ -1,4 +1,17 @@
-<!DOCTYPE html>
+<?php
+// echo $_COOKIE['userLogin'];
+if (!isset($_COOKIE['userLogin'])) {
+    header("Location: login.php");
+}
+
+$monthStart = date('Y-m-01');
+// print_r($monthStart);
+// Getting the user ID from the cookie to identify the user.
+// This helps in getting the specific user records from database.
+$userId = $_COOKIE['userLogin'];
+
+include 'config.php';
+?>
 <html lang="en">
 
 <head>
@@ -8,6 +21,8 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="dashboard-grid.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.0/chart.min.js"></script>
+
     <!-- <link rel="stylesheet" href="styles-login.css"> -->
     <title>ePocket</title>
     <style>
@@ -15,7 +30,7 @@
             background-image: none;
             background-color: #efffda;
         }
-        
+
         #section1 {
             height: 80px !important;
         }
@@ -23,28 +38,7 @@
 </head>
 
 <body>
-    <div id="smallScreenNav">
-        <div id="logo" style="width:50%">
-            <a href="dashboard.html"><img src="assets/logo.png" alt="Logo" width="120px"></a>
-        </div>
-        <div id="menu"><img src="assets/menu.png" alt="open-menu"></div>
-    </div>
-
-    <nav id="nav" class="toggle">
-        <div id="logo" style="width:50%">
-            <a href="dashboard.html"><img src="assets/logo.png" alt="Logo" width="120px"></a>
-        </div>
-        <div id="close"><img src="assets/close.png" alt="close-menu"></div>
-        <a href="dashboard.html">
-            <div>Dashboard</div>
-        </a>
-        <a href="settings.html">
-            <div>Settings</div>
-        </a>
-        <a href="index.html">
-            <div>Logout</div>
-        </a>
-    </nav>
+    <?php include 'hf/nav.php' ?>
     <section id="section1">
     </section>
 
@@ -67,21 +61,51 @@
                         quo saepe magni deserunt! Maxime officiis veritatis cupiditate vel.</p> -->
                     <div class="grid-container">
                         <div class="income-chart">
-                            Chart
+                            <canvas id="myChart"></canvas>
                         </div>
                         <div class="total-view">
                             <div class="total-view-card">
                                 <p class="total-income">Total Income</p>
-                                <div class="total-income-amount">Rs. 47000</div>
-                                <p class="current-month">June 2021</p>
+                                <div class="total-income-amount">
+                                    <?php
+                                    $sql = "SELECT SUM(recAmount) FROM record WHERE recType=1 AND userId=$userId AND recDate >= '$monthStart';";
+                                    $result = $conn->query($sql);
+
+                                    if ($result->num_rows > 0) {
+                                        $row = $result->fetch_assoc();
+                                        $income = $row['SUM(recAmount)'] == null ? 0 : $row['SUM(recAmount)'];
+                                        echo "Rs. " . $income;
+                                    }
+                                    ?>
+                                </div>
+                                <p class="current-month">
+                                    <?php echo date('F, Y'); ?>
+                                </p>
                             </div>
                             <div class="total-view-card">
                                 <p class="total-income">Total Expense</p>
-                                <div class="total-income-amount">Rs. 36280</div>
-                                <p class="current-month">June 2021</p>
+                                <div class="total-income-amount">
+                                    <?php
+                                    $sql = "SELECT SUM(recAmount) FROM record WHERE recType=2 AND userId=$userId AND recDate >= '$monthStart';";
+                                    $result = $conn->query($sql);
+
+                                    if ($result->num_rows > 0) {
+                                        $row = $result->fetch_assoc();
+                                        // var_dump($row['SUM(recAmount']);
+                                        $expense = $row['SUM(recAmount)'] == null ? 0 : $row['SUM(recAmount)'];
+
+                                        echo "Rs. " . $expense;
+                                    }
+                                    ?>
+                                </div>
+                                <p class="current-month">
+                                    <?php echo date('F, Y'); ?>
+                                </p>
                             </div>
                         </div>
-                        <div class="recent-entries">Recent Entries
+                        <div class="recent-entries">
+                            <p class="recent-entries-title">Recent Entries</p>
+
                             <table>
                                 <tr>
                                     <th>Date</th>
@@ -90,7 +114,28 @@
                                     <th>Type</th>
                                     <th>Amount</th>
                                 </tr>
-                                <tr>
+
+                                <?php
+                                include 'config.php';
+
+                                $sql = "SELECT recDate, categories, recDescription, type, recAmount FROM record JOIN category ON recCategory=catId JOIN type ON recType=typeId WHERE userId=$userId ORDER BY recDate DESC;";
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                    for ($i = 0; $i < 5; $i++) {
+                                        $row = $result->fetch_assoc();
+                                        echo "<tr>" .
+                                            "<td>" . $row["recDate"] . "</td>" .
+                                            "<td>" . $row["categories"] . "</td>" .
+                                            "<td>" . $row["recDescription"] . "</td>" .
+                                            "<td>" . $row["type"] . "</td>" .
+                                            "<td>" . $row["recAmount"] . "</td>" .
+                                            "</tr>";
+                                    }
+                                }
+                                ?>
+
+                                <!-- <tr>
                                     <td>22.06.2021</td>
                                     <td>Food</td>
                                     <td>Pizza</td>
@@ -106,11 +151,18 @@
                                 </tr>
                                 <tr>
                                     <td>22.06.2021</td>
-                                    <td>Food</td>
-                                    <td>Pizza</td>
+                                    <td>Utility</td>
+                                    <td>Electricity</td>
                                     <td>Expense</td>
-                                    <td>990.00</td>
+                                    <td>1290.00</td>
                                 </tr>
+                                <tr>
+                                    <td>26.06.2021</td>
+                                    <td>Utility</td>
+                                    <td>Water</td>
+                                    <td>Expense</td>
+                                    <td>1490.00</td>
+                                </tr> -->
                             </table>
                         </div>
                     </div>
@@ -152,5 +204,6 @@
 
 </body>
 <script src="script.js"></script>
+<script src="chartScript.js"></script>
 
 </html>

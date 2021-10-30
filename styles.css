@@ -16,8 +16,8 @@ body {
     display: block;
     margin: auto;
     font-size: 18px;
-    /* background-color: #efffda; */
-    background-image: linear-gradient(#efffda, #e4ffc1);
+    background-color: #efffda;
+    /* background-image: linear-gradient(#efffda, #e4ffc1); */
 }
 
 /* #nav {

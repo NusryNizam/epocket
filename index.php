@@ -11,32 +11,10 @@
 </head>
 
 <body>
-    <div id="smallScreenNav">
-        <div id="logo" style="width:50%">
-            <a href="index.html"><img src="assets/logo.png" alt="Logo" width="120px"></a>
-        </div>
-        <div id="menu"><img src="assets/menu.png" alt="open-menu"></div>
-    </div>
-
-    <nav id="nav" class="toggle">
-        <div id="logo" style="width:50%">
-            <a href="index.html"><img src="assets/logo.png" alt="Logo" width="120px"></a>
-        </div>
-        <div id="close"><img src="assets/close.png" alt="close-menu"></div>
-        <!-- <div id="menu"><img src="assets/menu.png" alt="open-menu"></div> -->
-        <a href="index.html">
-            <div>Home</div>
-        </a>
-        <a href="index.html#section2">
-            <div>Features</div>
-        </a>
-        <a href="signup.html">
-            <div>Create an account</div>
-        </a>
-        <a href="login.html" class="login-link">
-            <div>Login</div>
-        </a>
-    </nav>
+    <!-- Navigation Bar -->
+    <?php include 'hf/nav.php'?>
+    
+    <!-- Main content -->
     <section id="section1">
         <div id="section1-left">
             <h1 class="h1-light">Personal Finance Management</h1>
@@ -75,18 +53,9 @@
         <div><button class="btn-light get-started">Get Started</button></div>
     </section>
     <br><br><br><br>
-    <footer>
-        <div>
-            <h4>SITEMAP</h4>
-            <p><a href="index.html">Home</a></p>
-            <p><a href="about.html">About us</a></p>
-            <p><a href="index.html#section2">Features</a></p>
-        </div>
-        <div>
-            <img src="assets/logo-bw.png" alt="Logo in Black & White" width="120px" style="margin-left: 48px;">
-            <p class="copyrights">All rights reserved.<br>Designed & Developed by <br> <i>Nusry, Akeel, & Zaroath</i></p>
-        </div>
-    </footer>
+    
+    <?php include 'hf/footer.php' ?>
+
 </body>
 <script src="script.js"></script>
 
