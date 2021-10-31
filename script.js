@@ -14,7 +14,7 @@ function setSize() {
     let newHeight = window.innerHeight - nav.offsetHeight - 45;
     // section1.style.height = `${newHeight}px`;
     nav.style.width = `${body.offsetWidth}px`;
-    console.log('test')
+    // console.log('test')
 }
 
 

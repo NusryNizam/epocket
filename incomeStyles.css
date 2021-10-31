@@ -1,0 +1,84 @@
+#income-form {
+  /* box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); */
+  border-radius: 5px;
+  padding: 50px 50px 60px 45px;
+}
+
+input,
+select {
+  width: 100%;
+}
+
+.success {
+  text-align: center;
+  margin: auto;
+  margin-top: 8px;
+  margin-bottom: -20px;
+  width: 60%;
+  padding: 5px;
+  border-radius: 5px;
+  font-weight: bold;
+  background-color: rgb(32, 226, 97);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.income-recent-entries {
+  margin: 5px 0px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.363);
+  /* width: 100%; */
+}
+
+.income-recent-entries-title {
+  margin: 10px 0px;
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.income-recent-entries table {
+  margin-left: 10px;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  overflow: auto;
+  display: block;
+}
+
+.income-recent-entries table th {
+  padding: 0px 10px 0px 0px;
+  text-align: left;
+}
+
+.income-recent-entries table td {
+  padding: 3px 10px 3px 0px;
+}
+
+@media (min-width: 850px) {
+  .income-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    column-gap: 12px;
+  }
+
+  #income-form-container {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  .income-recent-entries {
+    grid-column: 2/4;
+    grid-row: 1/2;
+  }
+
+  #income-form {
+    margin: 5px 0px;
+  }
+
+  .income-recent-entries table td {
+    width: 22.35%;
+  }
+  
+}
