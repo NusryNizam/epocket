@@ -10,7 +10,7 @@ if (isset($uname) && isset($pword)) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             // echo $row["username"];
-            $cookieValue= $row["userId"];
+            $cookieValue = $row["userId"];
             setcookie($cookieName, $cookieValue, time() + (86400 * 30), "/"); // 86400 = 1 day
 
             header("Location: dashboard.php");

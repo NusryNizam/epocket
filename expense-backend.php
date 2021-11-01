@@ -28,5 +28,3 @@ if (isset($dateInput) && isset($category) && isset($description) && isset($amoun
 
 $sqlExpense->close();
 $conn->close();
-
-?>

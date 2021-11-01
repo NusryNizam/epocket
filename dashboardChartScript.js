@@ -5,7 +5,7 @@ let eachCategoryAmount = new Array();
 function getData() {
   // console.log(this.response);
   amount = JSON.parse(this.response);
-//   console.log(amount);
+  //   console.log(amount);
   amount.forEach((e) => {
     categories.push(e[1]);
     eachCategoryAmount.push(e[2]);

@@ -12,8 +12,8 @@
 
 <body>
     <!-- Navigation Bar -->
-    <?php include 'hf/nav.php'?>
-    
+    <?php include 'hf/nav.php' ?>
+
     <!-- Main content -->
     <section id="section1">
         <div id="section1-left">
@@ -32,19 +32,19 @@
         <h1 class="h1-light" style="text-align: center;">Features</h1>
         <div class="card-container">
             <div class="card">
-                <div><img src="assets/1.svg" alt="Investment" ></div>
+                <div><img src="assets/1.svg" alt="Investment"></div>
                 <div>Visualize your income and expenses</div>
             </div>
             <div class="card">
-                <div><img src="assets/2.svg" alt="Investment" ></div>
+                <div><img src="assets/2.svg" alt="Investment"></div>
                 <div>Categorization of income and expenses</div>
             </div>
             <div class="card">
-                <div><img src="assets/3.svg" alt="Investment" ></div>
+                <div><img src="assets/3.svg" alt="Investment"></div>
                 <div>Conveniently access all your data</div>
             </div>
             <div class="card">
-                <div><img src="assets/4.svg" alt="Investment" ></div>
+                <div><img src="assets/4.svg" alt="Investment"></div>
                 <div>Securely store your data with ePocket</div>
             </div>
         </div>
@@ -53,7 +53,7 @@
         <div><button class="btn-light get-started">Get Started</button></div>
     </section>
     <br><br><br><br>
-    
+
     <?php include 'hf/footer.php' ?>
 
 </body>

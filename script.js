@@ -7,27 +7,26 @@ let close = document.querySelector("#close");
 let menu = document.querySelector("#menu");
 let getStartedButton = document.querySelectorAll(".get-started");
 
-window.addEventListener('resize', setSize);
-window.addEventListener('load', setSize);
+window.addEventListener("resize", setSize);
+window.addEventListener("load", setSize);
 
 function setSize() {
-    let newHeight = window.innerHeight - nav.offsetHeight - 45;
-    // section1.style.height = `${newHeight}px`;
-    nav.style.width = `${body.offsetWidth}px`;
-    // console.log('test')
+  let newHeight = window.innerHeight - nav.offsetHeight - 45;
+  // section1.style.height = `${newHeight}px`;
+  nav.style.width = `${body.offsetWidth}px`;
+  // console.log('test')
 }
 
+menu.addEventListener("click", () => {
+  nav.classList.toggle("toggle");
+});
 
-menu.addEventListener('click', () => {
-    nav.classList.toggle("toggle");
-})
+close.addEventListener("click", () => {
+  nav.classList.toggle("toggle");
+});
 
-close.addEventListener('click', () => {
-    nav.classList.toggle("toggle");
-})
-
-getStartedButton.forEach(button => {
-    button.addEventListener('click', () => {
-        window.location.href = "signup.php";
-    })
-})
+getStartedButton.forEach((button) => {
+  button.addEventListener("click", () => {
+    window.location.href = "signup.php";
+  });
+});

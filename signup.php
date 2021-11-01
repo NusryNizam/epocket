@@ -1,5 +1,5 @@
-<?php 
-if(isset($_COOKIE['userLogin'])){
+<?php
+if (isset($_COOKIE['userLogin'])) {
     header("Location: dashboard.php");
 }
 ?>
@@ -39,11 +39,11 @@ if(isset($_COOKIE['userLogin'])){
                 </label>
                 <br>
                 <?php
-                if($_SERVER['REQUEST_URI'] == '/signup.php?error=pwd'){
+                if ($_SERVER['REQUEST_URI'] == '/signup.php?error=pwd') {
                     echo '<p style="font-size: 12px; color: red; font-weight: bold;">Passwords doesn\'t match</p>';
                 }
 
-                if($_SERVER['REQUEST_URI'] == '/signup.php?error=exists'){
+                if ($_SERVER['REQUEST_URI'] == '/signup.php?error=exists') {
                     echo '<p style="font-size: 12px; color: red; font-weight: bold;">Username or email already occupied</p>';
                 }
                 ?>
@@ -60,4 +60,5 @@ if(isset($_COOKIE['userLogin'])){
     <?php include 'hf/footer.php' ?>
 </body>
 <script src="script.js"></script>
+
 </html>

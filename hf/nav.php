@@ -35,7 +35,7 @@
     } else {
     ?>
         <!-- If cookie set, display dashboard and logout links. -->
-        
+
         <a href="dashboard.php" class="dashboard-link">
             <div>Dashboard</div>
         </a>
@@ -43,18 +43,18 @@
             <div>Logout</div>
         </a>
         <p style="font-style:italic !important; font-family: Open Sans; font-weight: 400;"><i>Logged in as:
-            <?php
-            include 'config.php';
-            $uid = (int)$_COOKIE['userLogin'];
-            $sql = "SELECT username FROM users WHERE userId=$uid";
-            $result = $conn->query($sql);
+                <?php
+                include 'config.php';
+                $uid = (int)$_COOKIE['userLogin'];
+                $sql = "SELECT username FROM users WHERE userId=$uid";
+                $result = $conn->query($sql);
 
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                $uname = $row['username'];
-            }
-            echo $uname
-            ?></i></p>
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $uname = $row['username'];
+                }
+                echo $uname
+                ?></i></p>
     <?php
     }
     //   echo $_SERVER['REQUEST_URI'];  

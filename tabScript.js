@@ -11,12 +11,12 @@ let expenseSection = document.getElementById("ex");
 let inactiveTab = "#d8d8d8";
 console.log(window.location.search);
 let path = window.location.search;
-if(path.includes("?income")){
+if (path.includes("?income")) {
   clickedButton = "Income";
-} else if (path.includes("?expense")){
+} else if (path.includes("?expense")) {
   clickedButton = "Expense";
 } else {
-  clickedButton = "Dashboard"
+  clickedButton = "Dashboard";
 }
 toggleTabs();
 // console.log(tabs);
@@ -56,11 +56,10 @@ function toggleTabs() {
   }
 }
 
-
-let successMsg = document.querySelector('.success');
-if(successMsg){
-successMsg.addEventListener('click', () => {
-  // window.location.href = 'dashboard.php?income';
-  successMsg.style.display = "none";
-})
+let successMsg = document.querySelector(".success");
+if (successMsg) {
+  successMsg.addEventListener("click", () => {
+    // window.location.href = 'dashboard.php?income';
+    successMsg.style.display = "none";
+  });
 }

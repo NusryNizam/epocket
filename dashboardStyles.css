@@ -4,7 +4,7 @@
 
 body {
   background-color: #efffda;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
 }
 
 #tabbar {
@@ -29,7 +29,7 @@ body {
   background-color: greenyellow;
   padding: 20px;
   border-radius: 0px 14px 14px 14px;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.150);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
   /* height: 90vh; */
 }
 
@@ -93,70 +93,69 @@ body {
 }
 
 @media (min-width: 600px) {
-    .grid-container {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        grid-template-rows: 1fr 1fr 2fr;
-    }
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1fr 2fr;
+  }
 
-    .income-chart {
-        grid-column: 1/2;
-        grid-row: 1/3;
-    }
+  .income-chart {
+    grid-column: 1/2;
+    grid-row: 1/3;
+  }
 
-    .total-view {
-        grid-column: 2/3;
-        grid-row: 1/3;
-    }
+  .total-view {
+    grid-column: 2/3;
+    grid-row: 1/3;
+  }
 
-    .recent-entries {
-        grid-column: 1/3;
-        grid-row: 3/4;
-    }
+  .recent-entries {
+    grid-column: 1/3;
+    grid-row: 3/4;
+  }
 }
 
 @media (min-width: 850px) {
-    .income-chart {
-        grid-column: 1/2;
-        grid-row: 1/4;
-    }
+  .income-chart {
+    grid-column: 1/2;
+    grid-row: 1/4;
+  }
 
-    .total-view {
-        grid-column: 2/3;
-        grid-row: 1/3;
-    }
+  .total-view {
+    grid-column: 2/3;
+    grid-row: 1/3;
+  }
 
-    .recent-entries {
-        grid-column: 2/3;
-        grid-row: 3/4;
-    }
+  .recent-entries {
+    grid-column: 2/3;
+    grid-row: 3/4;
+  }
 }
 
 @media (min-width: 1000px) {
-    .grid-container {
-        grid-template-rows: 1fr 1fr 1fr;
-    }
-    
-    .total-view {
-        display: flex;
-        flex-direction: row;
-        column-gap: 10px;
-    }
+  .grid-container {
+    grid-template-rows: 1fr 1fr 1fr;
+  }
 
-    .total-view-card {
-        width: 100%;
-    }
+  .total-view {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+  }
 
-    .income-chart {
-        grid-row: 1/4;
-    }
+  .total-view-card {
+    width: 100%;
+  }
 
-    .total-view {
-        grid-row: 1/2;
-    }
+  .income-chart {
+    grid-row: 1/4;
+  }
 
-    .recent-entries {
-        grid-row: 2/4;
-    }
+  .total-view {
+    grid-row: 1/2;
+  }
 
+  .recent-entries {
+    grid-row: 2/4;
+  }
 }
