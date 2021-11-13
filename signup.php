@@ -23,19 +23,19 @@ if (isset($_COOKIE['userLogin'])) {
 
                 <h2>Signup</h2>
                 <label for="username">Username<br>
-                    <input type="text" name="username" required>
+                    <input type="text" name="username" required tabindex="1">
                 </label>
                 <br>
                 <label for="email">Email<br>
-                    <input type="email" name="email" required>
+                    <input type="email" name="email" required tabindex="2">
                 </label>
                 <br>
                 <label for="password">New Password<br>
-                    <input type="password" name="password" required>
+                    <input type="password" name="password" required tabindex="3">
                 </label>
                 <br>
                 <label for="confirmPassword">Confirm Password<br>
-                    <input type="password" name="confirmPassword" required>
+                    <input type="password" name="confirmPassword" required tabindex="4">
                 </label>
                 <br>
                 <?php
@@ -47,8 +47,8 @@ if (isset($_COOKIE['userLogin'])) {
                     echo '<p style="font-size: 12px; color: red; font-weight: bold;">Username or email already occupied</p>';
                 }
                 ?>
-                <input type="submit" class="btn-light" name="signup" value="Signup">
-                <p class="small-text">Already have an account? <a href="login.php">Login here</a></p>
+                <input type="submit" class="btn-light" name="signup" value="Signup" tabindex="6">
+                <p class="small-text">Already have an account? <a href="login.php" tabindex="7">Login here</a></p>
             </form>
 
         </section>

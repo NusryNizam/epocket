@@ -1,5 +1,4 @@
 #income-form {
-  /* box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); */
   border-radius: 5px;
   padding: 50px 50px 60px 45px;
 }
@@ -23,12 +22,37 @@ select {
   cursor: pointer;
 }
 
+.title-row {
+  display: flex;
+}
+
+.title-row button {
+  margin-left: auto;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 50%;
+  background-color: white;
+  /* box-shadow: 0px 0px 5px black; */
+  cursor: pointer;
+  /* height: 30px; */
+}
+
+.title-row button:hover {
+  background-color: #f8f8f8;
+  box-shadow: 0px 0px 15px #0000004b;
+  transition-duration: 150ms;
+}
+
+.hide {
+  visibility: hidden;
+  height: 0px;
+}
+
 .income-recent-entries {
   margin: 5px 0px;
   padding: 5px;
   border-radius: 5px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.363);
-  /* width: 100%; */
 }
 
 .income-recent-entries-title {
@@ -36,6 +60,48 @@ select {
   margin-left: 10px;
   font-weight: bold;
   font-size: 1.2em;
+}
+
+.filter-by-date {
+  margin-right: 5px;
+}
+
+.filter-by-date form {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-items: baseline;
+  /* justify-content: center; */
+}
+
+.filter-by-date label {
+  margin-top: 7px;
+  margin-left: 5px;
+  color: rgb(56, 56, 56);
+  font-weight: normal;
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.filter-by-date form input {
+  height: 32px;
+  margin-left: 3px;
+  margin-right: 10px;
+  width: 122px;
+  padding: 5px 2px 5px 5px;
+  /* color: rgb(87, 87, 87); */
+}
+
+.no-data-found {
+  text-align: center;
+  color: lightslategrey;
+}
+
+.no-data-found h1 {
+  font-weight: normal;
 }
 
 .income-recent-entries table {
@@ -79,5 +145,12 @@ select {
 
   .income-recent-entries table td {
     width: 22.35%;
+  }
+}
+
+@media (max-width: 500px) {
+  .filter-by-date form {
+    flex-direction: column;
+    align-items: flex-end;
   }
 }

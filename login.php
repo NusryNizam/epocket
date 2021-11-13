@@ -27,11 +27,11 @@ if ($_SERVER['REQUEST_URI'] == "/login.php?logout=true") {
             <form id="login-form" method="post" action="login-backend.php">
                 <h2>Login</h2>
                 <label for="username">Username<br>
-                    <input type="text" name="username" required>
+                    <input type="text" name="username" required tabindex="1">
                 </label>
                 <br>
                 <label for="password">Password<br>
-                    <input type="password" name="password" required>
+                    <input type="password" name="password" required tabindex="2">
                 </label>
                 <br>
                 <?php
@@ -40,8 +40,8 @@ if ($_SERVER['REQUEST_URI'] == "/login.php?logout=true") {
                 }
                 ?>
 
-                <input type="submit" class="btn-light" name="login" value="Login">
-                <p class="small-text">Don't have an account? <a href="signup.php">Create one</a></p>
+                <input type="submit" class="btn-light" name="login" value="Login" tabindex="3">
+                <p class="small-text">Don't have an account? <a href="signup.php" tabindex="4">Create one</a></p>
             </form>
         </section>
         <div id="section1-right">

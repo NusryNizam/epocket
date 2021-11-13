@@ -6,6 +6,9 @@ if (!isset($_COOKIE['userLogin'])) {
 $monthStart = date('Y-m-01');
 $userId = $_COOKIE['userLogin'];
 
+$defaultStartDate = date('Y-m-01');
+$defaultEndDate = date('Y-m-j', strtotime("last day of this month"));
+
 include 'config.php';
 ?>
 <html lang="en">
@@ -165,36 +168,19 @@ include 'config.php';
                 </form>
             </div>
             <div class="income-recent-entries">
-                <p class="income-recent-entries-title">Income</p>
-
-                <table>
-                    <tr>
-                        <th>Date</th>
-                        <th>Category</th>
-                        <th>Description</th>
-                        <th>Type</th>
-                        <th>Amount</th>
-                    </tr>
-
-                    <?php
-                    // include 'config.php';
-
-                    $sql = "SELECT recDate, categories, recDescription, type, recAmount FROM record JOIN category ON recCategory=catId JOIN type ON recType=typeId WHERE userId=$userId AND recType=1 ORDER BY recDate DESC;";
-                    $result = $conn->query($sql);
-
-                    if ($result->num_rows > 0) {
-                        for ($i = 0; $i < 5; $i++) {
-                            $row = $result->fetch_assoc();
-                            echo "<tr>" .
-                                "<td>" . $row["recDate"] . "</td>" .
-                                "<td>" . $row["categories"] . "</td>" .
-                                "<td>" . $row["recDescription"] . "</td>" .
-                                "<td>" . $row["type"] . "</td>" .
-                                "<td>" . $row["recAmount"] . "</td>" .
-                                "</tr>";
-                        }
-                    }
-                    ?>
+                <div class="title-row">
+                    <p class="income-recent-entries-title">Income</p><button><img src="assets/filter_list_black_24dp.svg"></button>
+                </div>
+                <div class="filter-by-date hide" id="income-filter-row">
+                    <form action="" method="post">
+                        <label for="startDate">From:
+                            <input type="date" name="startDate" id="startDate" value="<?php echo $defaultStartDate ?>" required></label>
+                        <label for="endDate">To:
+                            <input type="date" name="endDate" id="endDate" value="<?php echo $defaultEndDate ?>" required></label>
+                        <input type="submit" class="btn-secondary" id="btnFilterIncome" value="Filter">
+                    </form>
+                </div>
+                <table id="replacerIncome">
                 </table>
             </div>
         </div>
@@ -251,41 +237,60 @@ include 'config.php';
                 </form>
             </div>
             <div class="income-recent-entries">
-                <p class="income-recent-entries-title">Expense</p>
-
-                <table>
-                    <tr>
-                        <th>Date</th>
-                        <th>Category</th>
-                        <th>Description</th>
-                        <th>Type</th>
-                        <th>Amount</th>
-                    </tr>
-
-                    <?php
-                    // include 'config.php';
-
-                    $sql = "SELECT recDate, categories, recDescription, type, recAmount FROM record JOIN category ON recCategory=catId JOIN type ON recType=typeId WHERE userId=$userId AND recType=2 ORDER BY recDate DESC;";
-                    $result = $conn->query($sql);
-
-                    if ($result->num_rows > 0) {
-                        for ($i = 0; $i < 5; $i++) {
-                            $row = $result->fetch_assoc();
-                            echo "<tr>" .
-                                "<td>" . $row["recDate"] . "</td>" .
-                                "<td>" . $row["categories"] . "</td>" .
-                                "<td>" . $row["recDescription"] . "</td>" .
-                                "<td>" . $row["type"] . "</td>" .
-                                "<td>" . $row["recAmount"] . "</td>" .
-                                "</tr>";
-                        }
-                    }
-                    ?>
+                <div class="title-row">
+                    <p class="income-recent-entries-title">Expense</p><button><img src="assets/filter_list_black_24dp.svg"></button>
+                </div>
+                <div class="filter-by-date hide" id="expense-filter-row">
+                    <form action="" method="post">
+                        <label for="startDateExpense">From:
+                            <input type="date" name="startDateExpense" id="startDateExpense" value="<?php echo $defaultStartDate ?>" required></label>
+                        <label for="endDateExpense">To:
+                            <input type="date" name="endDateExpense" id="endDateExpense" value="<?php echo $defaultEndDate ?>" required></label>
+                        <input type="submit" class="btn-secondary" id="btnFilterExpense" value="Filter">
+                    </form>
+                </div>
+                <table id="replacerExpense">
                 </table>
             </div>
         </div>
     </section>
 
+    <script src="scriptIncomeFilter.js"></script>
+    <script src="scriptExpenseFilter.js"></script>
+    <script>
+        window.onload = () => {
+            let currentDate = new Date();
+            let cDay = currentDate.getDate();
+            let cMonth = currentDate.getMonth() + 1;
+            let cYear = currentDate.getFullYear();
+            startDate = `${cYear}-${cMonth}-01`;
+
+            let forLastDay = new Date(
+                currentDate.getYear(),
+                currentDate.getMonth() + 1,
+                0
+            );
+            let lastDay = forLastDay.getDate();
+
+            endDate = `${cYear}-${cMonth}-${lastDay}`;
+
+            startDateExpense = `${cYear}-${cMonth}-01`;
+            endDateExpense = `${cYear}-${cMonth}-${lastDay}`;
+            getFilteredDataExpense(startDateExpense, endDateExpense);
+            getFilteredData(startDate, endDate);
+        };
+
+        let filterButton = document.querySelectorAll('.title-row button');
+        let expenseFilterRow = document.getElementById('expense-filter-row');
+        let incomeFilterRow = document.getElementById('income-filter-row');
+        filterButton[0].addEventListener('click', () => {
+            incomeFilterRow.classList.toggle('hide');
+        })
+
+        filterButton[1].addEventListener('click', () => {
+            expenseFilterRow.classList.toggle('hide');
+        })
+    </script>
     <script src="tabScript.js"></script>
     <script src="script.js"></script>
     <script src="dashboardChartScript.js"></script>

@@ -124,6 +124,23 @@ body {
   transition-duration: 100ms;
 }
 
+.btn-secondary {
+  border: 1px solid #0f0f0f;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding: 8px 12px;
+  border-radius: 3px;
+  font-family: "Open Sans";
+  box-shadow: 3px 3px 0px black;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  box-shadow: 5px 5px 0px black;
+  background-color: rgb(236, 236, 236);
+  transition-duration: 100ms;
+}
+
 #section2 > div:nth-child(5) {
   display: flex;
   justify-content: center;
