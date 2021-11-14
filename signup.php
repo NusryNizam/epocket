@@ -1,5 +1,4 @@
-<?php
-if (isset($_COOKIE['userLogin'])) {
+<?php if (isset($_COOKIE['userLogin'])) {
     header("Location: dashboard.php");
 }
 ?>
