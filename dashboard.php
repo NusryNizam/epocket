@@ -269,7 +269,7 @@ include 'config.php';
 
 
         function getDashboardInfo() {
-            console.log('running...')
+            // console.log('running...')
             var url = "dashboardBackend.php";
             var request2 = new XMLHttpRequest();
             request2.open("POST", url);
@@ -291,12 +291,29 @@ include 'config.php';
                 var ajaxResponse = request2.responseText;
 
                 let received = JSON.parse(request2.response);
-                // console.log(received.income);
+                // console.log(request2.response);
+                // console.log(received.tableData);
                 document.getElementById('incAmount').innerText = `Rs. ${received.income}`
                 document.getElementById('expAmount').innerText = `Rs. ${received.expense}`
-                document.getElementById('recentTable').innerHTML = `<tr><th>Date</th><th>Category</th><th>Description</th><th>Type</th><th>Amount</th></tr>${received.tableData.join("")}`;
+                
 
-                console.log(received.tableData.join(""))
+                let concatData = ""
+                received.tableData.forEach(row => {
+                    let newRow = "";
+                    row.forEach(item => {
+                        newRow += `<td>${item}</td>`
+                    })
+
+                    concatData += `<tr>${newRow}</tr>`
+                })
+
+                // console.log(concatData)
+
+                document.getElementById('recentTable').innerHTML = `<tr><th>Date</th><th>Category</th><th>Description</th><th>Type</th><th>Amount</th></tr>${concatData}`;
+
+
+
+                // console.log(received.tableData.join(""))
             }
         }
     </script>
