@@ -182,6 +182,12 @@ include 'config.php';
                 </div>
                 <table id="replacerIncome">
                 </table>
+                <div class="confirmationIncomeDialog confirmation hidden">
+                    <div>
+                        <p>Are you sure you want to delete?</p>
+                        <p><button id="btnYes" class="btn-secondary">Yes</button><button id="btnNo" class="btn-secondary">No</button></p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -251,6 +257,12 @@ include 'config.php';
                 </div>
                 <table id="replacerExpense">
                 </table>
+                <div class="confirmationExpenseDialog confirmation hidden">
+                    <div>
+                        <p>Are you sure you want to delete?</p>
+                        <p><button id="btnYesExpense" class="btn-secondary">Yes</button><button id="btnNoExpense" class="btn-secondary">No</button></p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

@@ -159,3 +159,87 @@ body {
     grid-row: 2/4;
   }
 }
+
+.deleteRecord {
+  background-color: crimson;
+  background-color: transparent;
+  border: none;
+  background-image: url(assets/delete.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 30px;
+  aspect-ratio: 0.7;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 100ms ease-out;
+}
+
+.deleteRecord:hover {
+  transform: scale(1.1);
+}
+
+.deleteRecord > .tooltip {
+  display: none;
+}
+
+.deleteRecord:hover > .tooltip {
+  display: inline;
+  position: absolute;
+  bottom: 15px;
+  right: 24px;
+  font-size: 10px;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  padding: 3px;
+  border-radius: 6px 6px 0px 6px;
+}
+
+.confirmation {
+  position: fixed;
+  display: flex;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.815);
+  z-index: 9999;
+}
+
+@supports (backdrop-filter: blur(1rem)) {
+  .confirmation {
+    backdrop-filter: blur(0.3rem);
+  }
+}
+
+.confirmation div {
+  max-width: 300px;
+  display: block;
+  margin: auto;
+  background: rgb(231, 253, 196);
+  padding: 15px 30px;
+  border-radius: 8px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.363);
+}
+
+.confirmation div p {
+  text-align: center;
+}
+
+.confirmation button {
+  margin: 0px 15px;
+  padding: 5px 20px;
+  transition: 150ms ease-out;
+}
+
+.confirmation button:active {
+  background: linear-gradient(rgb(209, 209, 209), rgb(241, 241, 241));
+}
+
+.confirmation button:nth-child(1) {
+  background-color: rgb(255, 204, 194);
+}
+
+.hidden {
+  display: none;
+}

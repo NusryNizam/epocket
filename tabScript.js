@@ -9,7 +9,7 @@ let incomeSection = document.getElementById("in");
 let expenseSection = document.getElementById("ex");
 
 let inactiveTab = "#d8d8d8";
-console.log(window.location.search);
+// console.log(window.location.search);
 let path = window.location.search;
 if (path.includes("?income")) {
   clickedButton = "Income";

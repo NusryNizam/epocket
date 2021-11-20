@@ -5,7 +5,7 @@ $userId = $_COOKIE['userLogin'];
 
 $dateInput = strtolower(trim($_POST['date']));
 $category = (int)trim($_POST['category']);
-$description = trim($_POST['description']);
+$description = trim($_POST['description']) . " ";
 $amount = (float)trim($_POST['amount']);
 $expense = 2;
 $userId = (int)$userId;

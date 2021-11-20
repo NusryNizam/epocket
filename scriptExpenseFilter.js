@@ -16,15 +16,15 @@ endDateInputExpense.addEventListener("change", () => {
 
 btnFilterExpense.addEventListener("click", (e) => {
   e.preventDefault();
-  console.log(
-    `get expenses after click... ${startDateExpense}, ${endDateExpense}`
-  );
+  // console.log(
+  //   `get expenses after click... ${startDateExpense}, ${endDateExpense}`
+  // );
   getFilteredDataExpense(startDateExpense, endDateExpense);
 });
 
 function getFilteredDataExpense(startDateExpense, endDateExpense) {
   if (startDateExpense != "" && endDateExpense != "") {
-    console.log(startDateExpense, endDateExpense);
+    // console.log(startDateExpense, endDateExpense);
     var url = "filter-expense.php";
     var data = `startDateExpense=${startDateExpense}&endDateExpense=${endDateExpense}`;
     var request2 = new XMLHttpRequest();
@@ -46,7 +46,7 @@ function handleResponseExpense() {
   // If there wasn't an error, run our showResponse function
   if (request2.status == 200) {
     var ajaxResponse = request2.responseText;
-    console.log(JSON.parse(request2.response));
+    // console.log(JSON.parse(request2.response));
 
     let rows = JSON.parse(request2.response);
     let abc = rows.map((row) => {
@@ -57,12 +57,64 @@ function handleResponseExpense() {
       return `<tr>${modifiedRow}</tr>`;
     });
 
-    console.log(
-      `Expense Output: ${abc.toString().replace(/,/g, "")}`,
-      typeof abc.toString()
-    );
     let tableHeader = `<table id="replacerExpense"><tr><th>Date</th><th>Category</th><th>Description</th><th>Type</th><th>Amount</th></tr>`;
     let tableContent = `${abc.toString().replace(/,/g, "")}`;
+    // console.log(tableContent)
+
+    let rowKeys = tableContent.match(/(<td>)(\d+)(<\/td>)/gm);
+    // console.log(rowKeys);
+
+    let keys = rowKeys.map((key) => {
+      return key.match(/\d+/);
+    });
+
+    keys = keys.map((k) => k[0]);
+    // console.log(keys);
+
+    let create = async () => {
+      tableContent = tableContent.replace(
+        /(<td>)(\d+)(<\/td>)/gm,
+        `<td><button class="deleteRecord deleteRecordExp"><span class="tooltip">Delete Row</span></button></td>`
+      );
+    };
+
+    let deleteRecordButtonsExp;
+
+    create().then(() => {
+      deleteRecordButtonsExp =
+        document.getElementsByClassName("deleteRecordExp");
+      keys.forEach((key, index) => {
+        Array.from(deleteRecordButtonsExp).forEach((button, btnIndex) => {
+          if (index == btnIndex) {
+            button.setAttribute("value", key);
+          }
+        });
+      });
+
+      Array.from(deleteRecordButtonsExp).forEach((button) => {
+        button.addEventListener("click", () => {
+          // console.log(`${button.value} button clicked`);
+          // deleteIncomeRecord(button.value);
+          let confirmationExp = document.querySelector(
+            ".confirmationExpenseDialog"
+          );
+          confirmationExp.classList.remove("hidden");
+
+          let btnNo = document.getElementById("btnNoExpense");
+          let btnYes = document.getElementById("btnYesExpense");
+
+          btnNo.addEventListener("click", () => {
+            confirmationExp.classList.add("hidden");
+          });
+
+          btnYes.addEventListener("click", () => {
+            deleteExpenseRecord(button.value);
+            confirmationExp.classList.add("hidden");
+          });
+        });
+      });
+    });
+
     let tableEnd = `</table>`;
 
     let wholeContent = tableHeader.concat(tableContent).concat(tableEnd);
@@ -78,3 +130,28 @@ let checkExpenseData = () => {
 };
 
 checkExpenseData();
+
+function deleteExpenseRecord(recordId) {
+  var url = "delete-income-record.php";
+  var data = `recordId=${recordId}`;
+  // console.log(`brrrrrrr..... ${recordId}`)
+  var request = new XMLHttpRequest();
+  request.open("POST", url);
+  request.addEventListener("readystatechange", handleExpenseDeletionResponse);
+  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  request.send(data);
+}
+
+function handleExpenseDeletionResponse() {
+  // "this" refers to the object we called addEventListener on
+  var request = this;
+  if (request.readyState != 4) return;
+
+  // If there wasn't an error, run our showResponse function
+  if (request.status == 200) {
+    var ajaxResponse = request.responseText;
+    // console.log(ajaxResponse);
+  }
+
+  getFilteredDataExpense(startDateExpense, endDateExpense);
+}

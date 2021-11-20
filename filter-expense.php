@@ -10,12 +10,12 @@ $userId = (int)$userId;
 
 if (isset($startDate) && isset($endDate)) {
 
-    $sqlFilter = "SELECT recDate, categories, recDescription, type, recAmount FROM record JOIN category ON recCategory=catId JOIN type ON recType=typeId WHERE userId=$userId AND recDate>='$startDate' AND recDate<='$endDate' AND recType=2 ORDER BY recDate DESC;";
+    $sqlFilter = "SELECT recId, recDate, categories, recDescription, type, recAmount FROM record JOIN category ON recCategory=catId JOIN type ON recType=typeId WHERE userId=$userId AND recDate>='$startDate' AND recDate<='$endDate' AND recType=2 ORDER BY recDate DESC;";
     $result = $conn->query($sqlFilter);
     $data = array();
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $rowData = [$row["recDate"], $row["categories"], $row["recDescription"], $row["type"], $row["recAmount"]];
+            $rowData = [$row["recDate"], $row["categories"], $row["recDescription"], $row["type"], $row["recAmount"], $row["recId"]];
             array_push($data, $rowData);
         }
     } else {
@@ -25,12 +25,12 @@ if (isset($startDate) && isset($endDate)) {
     $startDate = date('Y-m-01');
     $endDate = date('Y-m-j', strtotime("last day of this month"));
 
-    $sqlFilter = "SELECT recDate, categories, recDescription, type, recAmount FROM record JOIN category ON recCategory=catId JOIN type ON recType=typeId WHERE userId=$userId AND recDate>='$startDate' AND recDate<='$endDate' AND recType=1 ORDER BY recDate DESC;";
+    $sqlFilter = "SELECT redId, recDate, categories, recDescription, type, recAmount FROM record JOIN category ON recCategory=catId JOIN type ON recType=typeId WHERE userId=$userId AND recDate>='$startDate' AND recDate<='$endDate' AND recType=1 ORDER BY recDate DESC;";
     $result = $conn->query($sqlFilter);
     $data = array();
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $rowData = [$row["recDate"], $row["categories"], $row["recDescription"], $row["type"], $row["recAmount"]];
+            $rowData = [$row["recDate"], $row["categories"], $row["recDescription"], $row["type"], $row["recAmount"], $row["recId"]];
             array_push($data, $rowData);
         }
     } else {
