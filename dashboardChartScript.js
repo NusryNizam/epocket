@@ -1,28 +1,31 @@
 let amount;
 let categories = new Array();
 let eachCategoryAmount = new Array();
+let myChart = document.getElementById("myChart").getContext("2d");
+let massPopChart;
 
 function getData() {
-  // console.log(this.response);
+  categories = [];
+  eachCategoryAmount = [];
   amount = JSON.parse(this.response);
-  //   console.log(amount);
   amount.forEach((e) => {
     categories.push(e[1]);
     eachCategoryAmount.push(e[2]);
   });
   drawChart();
-  //   console.log(categories, eachCategoryAmount);
 }
 
-var oReq = new XMLHttpRequest();
-oReq.addEventListener("load", getData);
-oReq.open("GET", "getDashboardData.php");
-oReq.send();
+function updateChart() {
+  var oReq = new XMLHttpRequest();
+  oReq.addEventListener("load", getData);
+  oReq.open("GET", "getDashboardData.php");
+  oReq.send();
+}
 
-let myChart = document.getElementById("myChart").getContext("2d");
+updateChart();
 
 let drawChart = () => {
-  let massPopChart = new Chart(myChart, {
+  massPopChart = new Chart(myChart, {
     type: "pie",
     data: {
       labels: categories,

@@ -157,7 +157,10 @@ function handleIncomeDeletionResponse() {
   // If there wasn't an error, run our showResponse function
   if (request.status == 200) {
     var ajaxResponse = request.responseText;
-    // console.log(ajaxResponse);
+    getDashboardInfo();
+
+    massPopChart.destroy();
+    updateChart();
   }
 
   getFilteredData(startDate, endDate);

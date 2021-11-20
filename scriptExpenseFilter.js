@@ -151,6 +151,10 @@ function handleExpenseDeletionResponse() {
   if (request.status == 200) {
     var ajaxResponse = request.responseText;
     // console.log(ajaxResponse);
+    getDashboardInfo();
+
+    massPopChart.destroy();
+    updateChart();
   }
 
   getFilteredDataExpense(startDateExpense, endDateExpense);

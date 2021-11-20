@@ -40,23 +40,14 @@ include 'config.php';
 
     <section id="db" class="sections section1" style="background-color: white">
         <div class="grid-container">
-            <div class="income-chart">
+            <div class="income-chart" id="chartParent">
                 <canvas id="myChart"></canvas>
             </div>
             <div class="total-view">
                 <div class="total-view-card">
                     <p class="total-income">Total Income</p>
-                    <div class="total-income-amount">
-                        <?php
-                        $sql = "SELECT SUM(recAmount) FROM record WHERE recType=1 AND userId=$userId AND recDate >= '$monthStart';";
-                        $result = $conn->query($sql);
-
-                        if ($result->num_rows > 0) {
-                            $row = $result->fetch_assoc();
-                            $income = $row['SUM(recAmount)'] == null ? 0 : $row['SUM(recAmount)'];
-                            echo "Rs. " . $income;
-                        }
-                        ?>
+                    <div class="total-income-amount" id="incAmount">
+                        <!-- INSERT: income -->
                     </div>
                     <p class="current-month">
                         <?php echo date('F, Y'); ?>
@@ -64,19 +55,8 @@ include 'config.php';
                 </div>
                 <div class="total-view-card">
                     <p class="total-income">Total Expense</p>
-                    <div class="total-income-amount">
-                        <?php
-                        $sql = "SELECT SUM(recAmount) FROM record WHERE recType=2 AND userId=$userId AND recDate >= '$monthStart';";
-                        $result = $conn->query($sql);
-
-                        if ($result->num_rows > 0) {
-                            $row = $result->fetch_assoc();
-                            // var_dump($row['SUM(recAmount']);
-                            $expense = $row['SUM(recAmount)'] == null ? 0 : $row['SUM(recAmount)'];
-
-                            echo "Rs. " . $expense;
-                        }
-                        ?>
+                    <div class="total-income-amount" id="expAmount">
+                        <!-- INSERT: expense -->
                     </div>
                     <p class="current-month">
                         <?php echo date('F, Y'); ?>
@@ -86,32 +66,15 @@ include 'config.php';
             <div class="recent-entries">
                 <p class="recent-entries-title">Recent Entries</p>
 
-                <table>
-                    <tr>
+                <table id="recentTable">
+                    <!-- <tr>
                         <th>Date</th>
                         <th>Category</th>
                         <th>Description</th>
                         <th>Type</th>
                         <th>Amount</th>
-                    </tr>
-
-                    <?php
-                    $sql = "SELECT recDate, categories, recDescription, type, recAmount FROM record JOIN category ON recCategory=catId JOIN type ON recType=typeId WHERE userId=$userId ORDER BY recDate DESC;";
-                    $result = $conn->query($sql);
-
-                    if ($result->num_rows > 0) {
-                        for ($i = 0; $i < 5; $i++) {
-                            $row = $result->fetch_assoc();
-                            echo "<tr>" .
-                                "<td>" . $row["recDate"] . "</td>" .
-                                "<td>" . $row["categories"] . "</td>" .
-                                "<td>" . $row["recDescription"] . "</td>" .
-                                "<td>" . $row["type"] . "</td>" .
-                                "<td>" . $row["recAmount"] . "</td>" .
-                                "</tr>";
-                        }
-                    }
-                    ?>
+                    </tr> -->
+                    <!-- INSERT: tableData -->
                 </table>
             </div>
         </div>
@@ -290,6 +253,7 @@ include 'config.php';
             endDateExpense = `${cYear}-${cMonth}-${lastDay}`;
             getFilteredDataExpense(startDateExpense, endDateExpense);
             getFilteredData(startDate, endDate);
+            getDashboardInfo();
         };
 
         let filterButton = document.querySelectorAll('.title-row button');
@@ -302,6 +266,39 @@ include 'config.php';
         filterButton[1].addEventListener('click', () => {
             expenseFilterRow.classList.toggle('hide');
         })
+
+
+        function getDashboardInfo() {
+            console.log('running...')
+            var url = "dashboardBackend.php";
+            var request2 = new XMLHttpRequest();
+            request2.open("POST", url);
+            request2.addEventListener("readystatechange", handleInfoResponse);
+            request2.setRequestHeader(
+                "Content-type",
+                "application/json"
+            );
+            request2.send();
+        }
+
+        function handleInfoResponse() {
+            // "this" refers to the object we called addEventListener on
+            var request2 = this;
+            if (request2.readyState != 4) return;
+
+            // If there wasn't an error, run our showResponse function
+            if (request2.status == 200) {
+                var ajaxResponse = request2.responseText;
+
+                let received = JSON.parse(request2.response);
+                // console.log(received.income);
+                document.getElementById('incAmount').innerText = `Rs. ${received.income}`
+                document.getElementById('expAmount').innerText = `Rs. ${received.expense}`
+                document.getElementById('recentTable').innerHTML = `<tr><th>Date</th><th>Category</th><th>Description</th><th>Type</th><th>Amount</th></tr>${received.tableData.join("")}`;
+
+                console.log(received.tableData.join(""))
+            }
+        }
     </script>
     <script src="tabScript.js"></script>
     <script src="script.js"></script>
