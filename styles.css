@@ -322,6 +322,11 @@ footer a:hover {
   }
 }
 
+.members > a {
+  text-decoration: underline;
+  color: rgb(73, 73, 73);
+}
+
 @media (max-width: 780px) {
   .card-container {
     align-items: center;
