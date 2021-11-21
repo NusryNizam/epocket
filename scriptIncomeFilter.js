@@ -100,7 +100,7 @@ function handleResponse() {
 
       Array.from(deleteRecordButtons).forEach((button) => {
         button.addEventListener("click", () => {
-          console.log(`${button.value} button clicked`);
+          // console.log(`${button.value} button clicked`);
           // deleteIncomeRecord(button.value);
           let confirmation = document.querySelector(
             ".confirmationIncomeDialog"
@@ -156,7 +156,7 @@ function handleIncomeDeletionResponse() {
 
   // If there wasn't an error, run our showResponse function
   if (request.status == 200) {
-    var ajaxResponse = request.responseText;
+    // var ajaxResponse = request.responseText;
     getDashboardInfo();
 
     massPopChart.destroy();

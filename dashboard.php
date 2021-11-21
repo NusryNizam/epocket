@@ -289,16 +289,17 @@ include 'config.php';
             // If there wasn't an error, run our showResponse function
             if (request2.status == 200) {
                 var ajaxResponse = request2.responseText;
-
-                let received = JSON.parse(request2.response);
-                // console.log(request2.response);
-                // console.log(received.tableData);
-                document.getElementById('incAmount').innerText = `Rs. ${received.income}`
-                document.getElementById('expAmount').innerText = `Rs. ${received.expense}`
+                // console.log(request2.responseText)
+                let received = JSON.parse(request2.responseText);
                 
-
+                let incomeA = received[0];
+                let expenseA = received[1];
+                document.getElementById('incAmount').innerText = `Rs. ${incomeA}`
+                document.getElementById('expAmount').innerText = `Rs. ${expenseA}`
+                
+                received = received.slice(2);
                 let concatData = ""
-                received.tableData.forEach(row => {
+                received.forEach(row => {
                     let newRow = "";
                     row.forEach(item => {
                         newRow += `<td>${item}</td>`
@@ -306,6 +307,7 @@ include 'config.php';
 
                     concatData += `<tr>${newRow}</tr>`
                 })
+
 
                 // console.log(concatData)
 

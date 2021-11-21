@@ -36,24 +36,12 @@ $sql3 = "SELECT recDate, categories, recDescription, type, recAmount FROM record
 $result3 = $conn->query($sql3);
 
 
-$tableData = [];
+$tableData = [$income, $expense];
 if ($result3->num_rows > 0) {
     for ($i = 0; $i < 5; $i++) {
         $row3 = $result3->fetch_assoc();
         array_push($tableData, [$row3["recDate"], $row3["categories"],$row3["recDescription"],$row3["type"],$row3["recAmount"]]);
-        // array_push($tableData, "<tr>" .
-        //     "<td>" . $row3["recDate"] . "</td>" .
-        //     "<td>" . $row3["categories"] . "</td>" .
-        //     "<td>" . $row3["recDescription"] . "</td>" .
-        //     "<td>" . $row3["type"] . "</td>" .
-        //     "<td>" . $row3["recAmount"] . "</td>" .
-        //     "</tr>");
     }
 }
 
-
-$data->income = $income;
-$data->expense = $expense;
-$data->tableData = $tableData;
-
-echo json_encode($data);
+echo json_encode($tableData);
