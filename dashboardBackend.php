@@ -38,7 +38,8 @@ $result3 = $conn->query($sql3);
 
 $tableData = [$income, $expense];
 if ($result3->num_rows > 0) {
-    for ($i = 0; $i < 5; $i++) {
+    $max = min($result3->num_rows, 5);
+    for ($i = 0; $i < $max; $i++) {
         $row3 = $result3->fetch_assoc();
         array_push($tableData, [$row3["recDate"], $row3["categories"],$row3["recDescription"],$row3["type"],$row3["recAmount"]]);
     }

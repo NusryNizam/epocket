@@ -289,7 +289,7 @@ include 'config.php';
             // If there wasn't an error, run our showResponse function
             if (request2.status == 200) {
                 var ajaxResponse = request2.responseText;
-                // console.log(request2.responseText)
+                console.log(request2.responseText)
                 let received = JSON.parse(request2.responseText);
                 
                 let incomeA = received[0];
@@ -302,7 +302,7 @@ include 'config.php';
                 received.forEach(row => {
                     let newRow = "";
                     row.forEach(item => {
-                        newRow += `<td>${item}</td>`
+                        item != null ? newRow += `<td>${item}</td>` : 0;
                     })
 
                     concatData += `<tr>${newRow}</tr>`

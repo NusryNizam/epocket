@@ -47,79 +47,84 @@ function handleResponseExpense() {
   if (request2.status == 200) {
     var ajaxResponse = request2.responseText;
     // console.log(JSON.parse(request2.response));
+    // console.log(request2.response)
+    if (request2.responseText != `"Zero"`) {
+      let rows = JSON.parse(request2.response);
+      let abc = rows.map((row) => {
+        let modifiedRow = row.map((item) => {
+          return `<td>${item}</td>`;
+        });
 
-    let rows = JSON.parse(request2.response);
-    let abc = rows.map((row) => {
-      let modifiedRow = row.map((item) => {
-        return `<td>${item}</td>`;
+        return `<tr>${modifiedRow}</tr>`;
       });
 
-      return `<tr>${modifiedRow}</tr>`;
-    });
+      let tableHeader = `<table id="replacerExpense"><tr><th>Date</th><th>Category</th><th>Description</th><th>Type</th><th>Amount</th></tr>`;
+      let tableContent = `${abc.toString().replace(/,/g, "")}`;
+      // console.log(tableContent)
 
-    let tableHeader = `<table id="replacerExpense"><tr><th>Date</th><th>Category</th><th>Description</th><th>Type</th><th>Amount</th></tr>`;
-    let tableContent = `${abc.toString().replace(/,/g, "")}`;
-    // console.log(tableContent)
+      let rowKeys = tableContent.match(/(<td>)(\d+)(<\/td>)/gm);
+      // console.log(rowKeys);
 
-    let rowKeys = tableContent.match(/(<td>)(\d+)(<\/td>)/gm);
-    // console.log(rowKeys);
+      let keys = rowKeys.map((key) => {
+        return key.match(/\d+/);
+      });
 
-    let keys = rowKeys.map((key) => {
-      return key.match(/\d+/);
-    });
+      keys = keys.map((k) => k[0]);
+      // console.log(keys);
 
-    keys = keys.map((k) => k[0]);
-    // console.log(keys);
+      let create = async () => {
+        tableContent = tableContent.replace(
+          /(<td>)(\d+)(<\/td>)/gm,
+          `<td><button class="deleteRecord deleteRecordExp"><span class="tooltip">Delete Row</span></button></td>`
+        );
+      };
 
-    let create = async () => {
-      tableContent = tableContent.replace(
-        /(<td>)(\d+)(<\/td>)/gm,
-        `<td><button class="deleteRecord deleteRecordExp"><span class="tooltip">Delete Row</span></button></td>`
-      );
-    };
+      let deleteRecordButtonsExp;
 
-    let deleteRecordButtonsExp;
+      create().then(() => {
+        deleteRecordButtonsExp =
+          document.getElementsByClassName("deleteRecordExp");
+        keys.forEach((key, index) => {
+          Array.from(deleteRecordButtonsExp).forEach((button, btnIndex) => {
+            if (index == btnIndex) {
+              button.setAttribute("value", key);
+            }
+          });
+        });
 
-    create().then(() => {
-      deleteRecordButtonsExp =
-        document.getElementsByClassName("deleteRecordExp");
-      keys.forEach((key, index) => {
-        Array.from(deleteRecordButtonsExp).forEach((button, btnIndex) => {
-          if (index == btnIndex) {
-            button.setAttribute("value", key);
-          }
+        Array.from(deleteRecordButtonsExp).forEach((button) => {
+          button.addEventListener("click", () => {
+            // console.log(`${button.value} button clicked`);
+            // deleteIncomeRecord(button.value);
+            let confirmationExp = document.querySelector(
+              ".confirmationExpenseDialog"
+            );
+            confirmationExp.classList.remove("hidden");
+
+            let btnNo = document.getElementById("btnNoExpense");
+            let btnYes = document.getElementById("btnYesExpense");
+
+            btnNo.addEventListener("click", () => {
+              confirmationExp.classList.add("hidden");
+            });
+
+            btnYes.addEventListener("click", () => {
+              deleteExpenseRecord(button.value);
+              confirmationExp.classList.add("hidden");
+            });
+          });
         });
       });
 
-      Array.from(deleteRecordButtonsExp).forEach((button) => {
-        button.addEventListener("click", () => {
-          // console.log(`${button.value} button clicked`);
-          // deleteIncomeRecord(button.value);
-          let confirmationExp = document.querySelector(
-            ".confirmationExpenseDialog"
-          );
-          confirmationExp.classList.remove("hidden");
+      let tableEnd = `</table>`;
 
-          let btnNo = document.getElementById("btnNoExpense");
-          let btnYes = document.getElementById("btnYesExpense");
+      let wholeContent = tableHeader.concat(tableContent).concat(tableEnd);
 
-          btnNo.addEventListener("click", () => {
-            confirmationExp.classList.add("hidden");
-          });
-
-          btnYes.addEventListener("click", () => {
-            deleteExpenseRecord(button.value);
-            confirmationExp.classList.add("hidden");
-          });
-        });
-      });
-    });
-
-    let tableEnd = `</table>`;
-
-    let wholeContent = tableHeader.concat(tableContent).concat(tableEnd);
-
-    replacerExpense.innerHTML = wholeContent.toString();
+      replacerExpense.innerHTML = wholeContent.toString();
+    } else {
+      replacerExpense.innerHTML = "";
+      checkExpenseData();
+    }
   }
 }
 
@@ -155,6 +160,7 @@ function handleExpenseDeletionResponse() {
 
     massPopChart.destroy();
     updateChart();
+    // location.reload();
   }
 
   getFilteredDataExpense(startDateExpense, endDateExpense);

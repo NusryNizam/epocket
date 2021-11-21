@@ -19,7 +19,8 @@ if (isset($startDate) && isset($endDate)) {
             array_push($data, $rowData);
         }
     } else {
-        echo "Error: " . $conn->error;
+        // echo "Error: " . $conn->error;
+        $data = "Zero";
     }
 } else {
     $startDate = date('Y-m-01');

@@ -46,87 +46,94 @@ function handleResponse() {
   if (request.status == 200) {
     var ajaxResponse = request.responseText;
     // console.log(JSON.parse(request.response));
+    // console.log(request.responseText == `"Zero"`);
 
-    let rows = JSON.parse(request.response);
-    let abc = rows.map((row) => {
-      let modifiedRow = row.map((item) => {
-        return `<td>${item}</td>`;
+    if (request.responseText != `"Zero"`) {
+      let rows = JSON.parse(request.response);
+      let abc = rows.map((row) => {
+        let modifiedRow = row.map((item) => {
+          return `<td>${item}</td>`;
+        });
+
+        return `<tr>${modifiedRow}</tr>`;
       });
 
-      return `<tr>${modifiedRow}</tr>`;
-    });
+      // console.log(
+      //   `Income Output: ${abc.toString().replace(/,/g, "")}`,
+      //   typeof abc.toString()
+      // );
+      let tableHeader = `<table id="replacerIncome"><tr><th>Date</th><th>Category</th><th>Description</th><th>Type</th><th>Amount</th></tr>`;
 
-    // console.log(
-    //   `Income Output: ${abc.toString().replace(/,/g, "")}`,
-    //   typeof abc.toString()
-    // );
-    let tableHeader = `<table id="replacerIncome"><tr><th>Date</th><th>Category</th><th>Description</th><th>Type</th><th>Amount</th></tr>`;
+      let tableContent = `${abc.toString().replace(/,/g, "")}`;
 
-    let tableContent = `${abc.toString().replace(/,/g, "")}`;
+      // Getting the record id from the string to an array
+      let rowKeys = tableContent.match(/(<td>)(\d+)(<\/td>)/gm);
+      // console.log(rowKeys);
 
-    // Getting the record id from the string to an array
-    let rowKeys = tableContent.match(/(<td>)(\d+)(<\/td>)/gm);
-    // console.log(rowKeys);
+      let keys = rowKeys.map((key) => {
+        return key.match(/\d+/);
+      });
 
-    let keys = rowKeys.map((key) => {
-      return key.match(/\d+/);
-    });
+      keys = keys.map((k) => k[0]);
 
-    keys = keys.map((k) => k[0]);
+      // console.log(keys);
 
-    // console.log(keys);
+      let create = async () => {
+        tableContent = tableContent.replace(
+          /(<td>)(\d+)(<\/td>)/gm,
+          `<td><button class="deleteRecord deleteRecordInc"><span class="tooltip">Delete Row</span></button></td>`
+        );
+      };
 
-    let create = async () => {
-      tableContent = tableContent.replace(
-        /(<td>)(\d+)(<\/td>)/gm,
-        `<td><button class="deleteRecord deleteRecordInc"><span class="tooltip">Delete Row</span></button></td>`
-      );
-    };
+      let deleteRecordButtons;
 
-    let deleteRecordButtons;
+      create().then(() => {
+        deleteRecordButtons =
+          document.getElementsByClassName("deleteRecordInc");
+        // console.log('after await')
 
-    create().then(() => {
-      deleteRecordButtons = document.getElementsByClassName("deleteRecordInc");
-      // console.log('after await')
+        keys.forEach((key, index) => {
+          Array.from(deleteRecordButtons).forEach((button, btnIndex) => {
+            if (index == btnIndex) {
+              button.setAttribute("value", key);
+              // console.log(`I'm in: ${key}`)
+            }
+          });
+        });
 
-      keys.forEach((key, index) => {
-        Array.from(deleteRecordButtons).forEach((button, btnIndex) => {
-          if (index == btnIndex) {
-            button.setAttribute("value", key);
-            // console.log(`I'm in: ${key}`)
-          }
+        Array.from(deleteRecordButtons).forEach((button) => {
+          button.addEventListener("click", () => {
+            // console.log(`${button.value} button clicked`);
+            // deleteIncomeRecord(button.value);
+            let confirmation = document.querySelector(
+              ".confirmationIncomeDialog"
+            );
+            confirmation.classList.remove("hidden");
+
+            let btnNo = document.getElementById("btnNo");
+            let btnYes = document.getElementById("btnYes");
+
+            btnNo.addEventListener("click", () => {
+              confirmation.classList.add("hidden");
+            });
+
+            btnYes.addEventListener("click", () => {
+              deleteIncomeRecord(button.value);
+              confirmation.classList.add("hidden");
+            });
+          });
         });
       });
 
-      Array.from(deleteRecordButtons).forEach((button) => {
-        button.addEventListener("click", () => {
-          // console.log(`${button.value} button clicked`);
-          // deleteIncomeRecord(button.value);
-          let confirmation = document.querySelector(
-            ".confirmationIncomeDialog"
-          );
-          confirmation.classList.remove("hidden");
+      // tableContent = tableContent.replace(/(<td>)(\d+)(<\/td>)/gm, `<td><button class="deleteRecord"><span></span></button></td>`)
+      let tableEnd = `</table>`;
+      let wholeContent = tableHeader.concat(tableContent).concat(tableEnd);
 
-          let btnNo = document.getElementById("btnNo");
-          let btnYes = document.getElementById("btnYes");
-
-          btnNo.addEventListener("click", () => {
-            confirmation.classList.add("hidden");
-          });
-
-          btnYes.addEventListener("click", () => {
-            deleteIncomeRecord(button.value);
-            confirmation.classList.add("hidden");
-          });
-        });
-      });
-    });
-
-    // tableContent = tableContent.replace(/(<td>)(\d+)(<\/td>)/gm, `<td><button class="deleteRecord"><span></span></button></td>`)
-    let tableEnd = `</table>`;
-    let wholeContent = tableHeader.concat(tableContent).concat(tableEnd);
-
-    replacerIncome.innerHTML = wholeContent.toString();
+      replacerIncome.innerHTML = wholeContent.toString();
+    } else {
+      replacerIncome.innerHTML = "";
+      checkData();
+    }
   }
 }
 
@@ -157,10 +164,11 @@ function handleIncomeDeletionResponse() {
   // If there wasn't an error, run our showResponse function
   if (request.status == 200) {
     // var ajaxResponse = request.responseText;
+    console.log(request.response);
     getDashboardInfo();
-
     massPopChart.destroy();
     updateChart();
+    // location.reload();
   }
 
   getFilteredData(startDate, endDate);
